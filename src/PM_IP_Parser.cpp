@@ -7,6 +7,7 @@
 
 #include "PM_IP_Parser.h"
 #include <boost/regex.hpp>
+#include <cstdlib>
 
 PhantomMenace::IniParser::Parser *parser = 0;
 
@@ -103,6 +104,30 @@ void Parser::parse(const char *raw)
 
 		rc = raw[++lastIndex];
 	}
+}
+
+void Parser::parseFromFile(const std::string& iFileName)
+{
+	FILE *file;
+
+	file = fopen(iFileName.c_str(), "r");
+	if (file == 0)
+		throw std::runtime_error("Couldn't open file..");
+
+	std::string aFileContent;
+
+	// Read 4k per time
+	char *block = new char[4096];
+	size_t read;
+	while (!feof(file))
+	{
+		read = fread(block, sizeof(char), 4096, file);
+		aFileContent += block;
+	}
+
+	delete [] block;
+	fclose(file);
+	parse(aFileContent.c_str());
 }
 
 const Elements_t& Parser::getElements() const
