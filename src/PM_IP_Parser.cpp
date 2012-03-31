@@ -63,16 +63,28 @@ void Parser::parse(const char *raw)
 		}
 
 		// Manage the string
+
+		// New line and comment
+		if (aString.size() == 0); //< Do Nothing
+		else if (aString.at(0) == '#'); //< Do nothing
+
 		// A new token is found
-		if (aString.at(0) == '[')
+		else if (aString.at(0) == '[')
 		{
-			IniElement elem(aString.substr(1, aString.size()-2));
+			IniElement elem;
+			boost::cmatch cm;
+			boost::regex re("[(.*?)]", boost::regex_constants::icase);
+			if (boost::regex_match(aString.c_str(), cm, re))
+				elem.elementName = cm[1];
+			else
+				elem.elementName = aString.substr(1, aString.size()-2);
+
 			elements.push_back(elem);
 			elements.back().clearAttributes();
 		}
 
-		// This must be an attribute (since it's not a comment)
-		else if (aString.at(0) != '#')
+		// This must be an attribute
+		else
 		{
 			try {
 				boost::cmatch cm;

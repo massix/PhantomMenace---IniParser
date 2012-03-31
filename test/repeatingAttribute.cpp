@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
 	PhantomMenace::IniParser::Parser::getInstance().parse(
 			"# This is a comment\n"
 			"[first grammar]\n"
+			"   \n"
 			"# Only the first one should be pushed..\n"
 			"g_one.logic = False\n"
 			"g_one.logic = True\n"
