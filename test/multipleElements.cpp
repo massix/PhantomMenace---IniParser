@@ -75,12 +75,12 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	std::cout << "good!\n";
 
-	std::cout << "Checking third grammar attribute g_two.logic.. ";
+	std::cout << "Checking third grammar attribute g_three.logic.. ";
 	if (third_grammar["g_three.logic"] != "None")
 		exit(EXIT_FAILURE);
 	std::cout << "good!\n";
 
-	std::cout << "Checking second grammar attribute g_two.sentiment.. ";
+	std::cout << "Checking third grammar attribute g_three.sentiment.. ";
 	if (third_grammar["g_three.sentiment"] != "Friendship")
 		exit(EXIT_FAILURE);
 	std::cout << "good!\n";
