@@ -11,6 +11,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <stdexcept>
 #include "PM_IP_IniElement.h"
 
 typedef std::vector<PhantomMenace::IniParser::IniElement> Elements_t;
@@ -28,6 +29,10 @@ public:
 	void parseFromFile(const std::string& iFileName);
 
 	const Elements_t& getElements() const;
+	const IniElement& getElement(const std::string& iElementName)
+		const throw(std::runtime_error);
+
+	bool hasElement(const std::string& iElementName) const;
 
 	void log() const;
 

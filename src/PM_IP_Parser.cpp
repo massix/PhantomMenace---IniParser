@@ -8,6 +8,7 @@
 #include "PM_IP_Parser.h"
 #include <boost/regex.hpp>
 #include <cstdlib>
+#include <stdexcept>
 
 PhantomMenace::IniParser::Parser *parser = 0;
 
@@ -74,7 +75,7 @@ void Parser::parse(const char *raw)
 		{
 			IniElement elem;
 			boost::cmatch cm;
-			boost::regex re("[(.*?)]", boost::regex_constants::icase);
+			boost::regex re("^\\[(.*?)\\].*", boost::regex_constants::icase);
 			if (boost::regex_match(aString.c_str(), cm, re))
 				elem.elementName = cm[1];
 			else
@@ -133,6 +134,35 @@ void Parser::parseFromFile(const std::string& iFileName)
 const Elements_t& Parser::getElements() const
 {
 	return elements;
+}
+
+const IniElement& Parser::getElement(const std::string& iElementName)
+	const throw(std::runtime_error)
+{
+	Elements_t::const_iterator ite;
+
+	for (ite = elements.begin(); ite != elements.end(); ++ite)
+	{
+		if ((*ite).getElementName() == iElementName)
+			return (*ite);
+	}
+
+	throw std::runtime_error("Element not found!");
+}
+
+bool Parser::hasElement(const std::string& iElementName) const
+{
+	try
+	{
+		getElement(iElementName);
+		return true;
+	}
+	catch (...)
+	{
+		return false;
+	}
+
+	return false;
 }
 
 } /* namespace IniParser */
