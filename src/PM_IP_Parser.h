@@ -24,6 +24,7 @@ public:
 	static Parser& getInstance();
 	static Parser* getInstancePtr();
 	static void resetInstance();
+	static void clearInstance();
 
 	void parse(const char *raw);
 	void parseFromFile(const std::string& iFileName);

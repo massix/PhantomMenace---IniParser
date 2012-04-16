@@ -35,6 +35,16 @@ void Parser::resetInstance()
 {
 	if (parser)
 		delete parser;
+
+	parser = 0;
+}
+
+void Parser::clearInstance()
+{
+	if (parser)
+	{
+		parser->elements.clear();
+	}
 }
 
 void Parser::log() const
