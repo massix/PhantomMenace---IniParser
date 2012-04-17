@@ -10,40 +10,44 @@
 #include <cstdlib>
 #include <stdexcept>
 
-PhantomMenace::IniParser::Parser *parser = 0;
+#include <cstdio>
+
+PhantomMenace::IniParser::Parser* PhantomMenace::IniParser::Parser::instance = 0;
 
 namespace PhantomMenace {
 namespace IniParser {
 
 Parser& Parser::getInstance()
 {
-	if (!parser)
-		parser = new Parser();
+	if (!instance)
+		instance = new Parser();
 
-	return *parser;
+	return *instance;
 }
 
 Parser* Parser::getInstancePtr()
 {
-	if (!parser)
-		parser = new Parser();
+	if (!instance)
+		instance = new Parser();
 
-	return parser;
+	return instance;
 }
 
 void Parser::resetInstance()
 {
-	if (parser)
-		delete parser;
+	if (instance)
+		delete instance;
 
-	parser = 0;
+	instance = 0;
 }
 
 void Parser::clearInstance()
 {
-	if (parser)
+	if (instance)
 	{
-		parser->elements.clear();
+		delete instance;
+		instance = new Parser();
+//		instance->elements.clear();
 	}
 }
 
