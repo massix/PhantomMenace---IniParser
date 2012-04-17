@@ -35,8 +35,6 @@ public:
 
 	bool hasElement(const std::string& iElementName) const;
 
-	void log() const;
-
 private:
 	Parser& operator=(const Parser& right) {return *this;}
 	Parser() {};

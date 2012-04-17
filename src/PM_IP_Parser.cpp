@@ -51,13 +51,6 @@ void Parser::clearInstance()
 	}
 }
 
-void Parser::log() const
-{
-	std::cout << "==============\n"
-			  << "= PARSER LOG =\n"
-			  << "==============\n";
-}
-
 void Parser::parse(const char *raw)
 {
 	if (raw == 0)
