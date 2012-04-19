@@ -7,9 +7,10 @@ file(GLOB HEADERS *.h)
 
 add_definitions(-Wall -dynamiclib)
 
-link_libraries(boost_regex-mt)
 add_library(PmIniParser SHARED ${SOURCES})
 add_library(PmIniParser-static STATIC ${SOURCES})
+target_link_libraries(PmIniParser boost_regex-mt)
+target_link_libraries(PmIniParser-static boost_regex-mt)
 
 # Set the version of the library
 set_target_properties(PmIniParser PmIniParser-static
