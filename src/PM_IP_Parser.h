@@ -41,6 +41,7 @@ public:
 	static Parser* getInstancePtr();
 	static void resetInstance();
 	static void clearInstance();
+	virtual ~Parser() {};
 
 	void parse(const char *raw);
 	void parseFromFile(const std::string& iFileName);
@@ -52,11 +53,9 @@ public:
 	bool hasElement(const std::string& iElementName) const;
 
 private:
-	Parser& operator=(const Parser& right) {return *this;}
-	Parser() {};
-	virtual ~Parser() {};
-
-	static Parser* instance;
+	Parser();
+	Parser(const Parser& right);
+	Parser& operator=(const Parser& right);
 
 	Elements_t elements;
 };

@@ -28,43 +28,34 @@
 
 #include <cstdio>
 
-PhantomMenace::IniParser::Parser* PhantomMenace::IniParser::Parser::instance = 0;
-
 namespace PhantomMenace {
 namespace IniParser {
 
+
+Parser::Parser()
+{
+
+}
+
 Parser& Parser::getInstance()
 {
-	if (!instance)
-		instance = new Parser();
-
-	return *instance;
+	static Parser _instance;
+	return _instance;
 }
 
 Parser* Parser::getInstancePtr()
 {
-	if (!instance)
-		instance = new Parser();
-
-	return instance;
+	return &(getInstance());
 }
 
 void Parser::resetInstance()
 {
-	if (instance)
-		delete instance;
-
-	instance = 0;
+	getInstance().elements.clear();
 }
 
 void Parser::clearInstance()
 {
-	if (instance)
-	{
-		delete instance;
-		instance = new Parser();
-//		instance->elements.clear();
-	}
+	resetInstance();
 }
 
 void Parser::parse(const char *raw)
