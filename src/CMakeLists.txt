@@ -19,7 +19,7 @@ target_link_libraries(PmIniParser-static ${Boost_LIBRARIES})
 
 # Set the version of the library
 set_target_properties(PmIniParser PmIniParser-static
-    PROPERTIES SOVERSION 1 VERSION 1.4.00)
+    PROPERTIES SOVERSION 1 VERSION 1.4.1)
 
 # Name the static library as the dynamic one
 set_target_properties(PmIniParser-static

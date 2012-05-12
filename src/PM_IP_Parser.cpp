@@ -28,6 +28,10 @@
 
 #include <cstdio>
 
+#include <fstream>
+#include <sstream>
+#include <iterator>
+
 namespace PhantomMenace {
 namespace IniParser {
 
@@ -123,26 +127,17 @@ void Parser::parse(const char *raw)
 
 void Parser::parseFromFile(const std::string& iFileName)
 {
-	FILE *file;
+	std::ifstream aFileStream(iFileName.c_str());
 
-	file = fopen(iFileName.c_str(), "r");
-	if (file == 0)
-		throw std::runtime_error("Couldn't open file..");
-
-	std::string aFileContent;
-
-	// Read 4k per time
-	char *block = new char[4096];
-	size_t read;
-	while (!feof(file))
+	if (aFileStream)
 	{
-		read = fread(block, sizeof(char), 4096, file);
-		aFileContent += block;
-	}
+		std::string aFileContent((std::istreambuf_iterator<char>(aFileStream)),
+				(std::istreambuf_iterator<char>()));
 
-	delete [] block;
-	fclose(file);
-	parse(aFileContent.c_str());
+		parse (aFileContent.c_str());
+
+		aFileStream.close();
+	}
 }
 
 const Elements_t& Parser::getElements() const
