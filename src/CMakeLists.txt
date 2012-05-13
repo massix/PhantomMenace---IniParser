@@ -5,7 +5,16 @@ include_directories(.)
 file(GLOB SOURCES *.cpp)
 file(GLOB HEADERS *.h)
 
-add_definitions(-Wall -dynamiclib)
+set(MajorVersion  1)
+set(BinaryVersion 4)
+set(MinorVersion  2)
+set(FullVersion ${MajorVersion}.${BinaryVersion}.${MinorVersion})
+
+add_definitions(
+    -Wall
+    -DMAJORVERSION=${MajorVersion}
+    -DBINARYVERSION=${BinaryVersion}
+    -DMINORVERSION=${MinorVersion})
 
 find_package(Boost COMPONENTS regex-mt)
 
@@ -19,7 +28,7 @@ target_link_libraries(PmIniParser-static ${Boost_LIBRARIES})
 
 # Set the version of the library
 set_target_properties(PmIniParser PmIniParser-static
-    PROPERTIES SOVERSION 1 VERSION 1.4.1)
+    PROPERTIES SOVERSION ${MajorVersion} VERSION ${FullVersion})
 
 # Name the static library as the dynamic one
 set_target_properties(PmIniParser-static
