@@ -5,8 +5,8 @@
  *      Author: massi
  */
 
-#include "../src/PM_IP_IniElement.h"
-#include "../src/PM_IP_Parser.h"
+#include "PM_IP_IniElement.h"
+#include "PM_IP_Parser.h"
 
 #include <iostream>
 #include <cstdlib>

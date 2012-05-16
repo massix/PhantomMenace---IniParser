@@ -1,6 +1,6 @@
 # test folder
 
-include_directories(. ../src)
+include_directories(. ../include)
 
 file (GLOB SOURCES *.cpp)
 

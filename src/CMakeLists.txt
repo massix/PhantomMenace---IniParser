@@ -3,11 +3,11 @@
 include_directories(.)
 
 file(GLOB SOURCES *.cpp)
-file(GLOB HEADERS *.h)
+file(GLOB HEADERS ${libPmIniParser_SOURCE_DIR}/include/*.h)
 
 set(MajorVersion  1)
 set(BinaryVersion 4)
-set(MinorVersion  2)
+set(MinorVersion  3)
 set(FullVersion ${MajorVersion}.${BinaryVersion}.${MinorVersion})
 
 add_definitions(
@@ -18,7 +18,7 @@ add_definitions(
 
 find_package(Boost COMPONENTS regex-mt)
 
-include_directories(${Boost_INCLUDE_DIRS})
+include_directories(${Boost_INCLUDE_DIRS} ${libPmIniParser_SOURCE_DIR}/include)
 
 add_library(PmIniParser SHARED ${SOURCES})
 add_library(PmIniParser-static STATIC ${SOURCES})
