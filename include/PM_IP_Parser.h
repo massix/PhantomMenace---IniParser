@@ -28,6 +28,8 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
+#include <boost/chrono.hpp>
+
 #include "PM_IP_IniElement.h"
 
 typedef std::vector<PhantomMenace::IniParser::IniElement> Elements_t;
@@ -51,6 +53,7 @@ public:
 		const throw(std::runtime_error);
 
 	bool hasElement(const std::string& iElementName) const;
+	double getParsingDuration() const;
 
 private:
 	Parser();
@@ -58,6 +61,7 @@ private:
 	Parser& operator=(const Parser& right);
 
 	Elements_t elements;
+	boost::chrono::duration<double> parsing_duration;
 };
 
 } /* namespace IniParser */

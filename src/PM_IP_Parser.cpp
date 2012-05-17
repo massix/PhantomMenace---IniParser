@@ -23,6 +23,7 @@
 
 #include "PM_IP_Parser.h"
 #include <boost/regex.hpp>
+#include <boost/chrono.hpp>
 #include <cstdlib>
 #include <stdexcept>
 
@@ -55,6 +56,7 @@ Parser* Parser::getInstancePtr()
 void Parser::resetInstance()
 {
 	getInstance().elements.clear();
+	getInstance().parsing_duration = boost::chrono::duration<double>();
 }
 
 void Parser::clearInstance()
@@ -65,6 +67,9 @@ void Parser::clearInstance()
 void Parser::parse(const char *raw)
 {
 	resetInstance();
+
+	boost::chrono::system_clock::time_point start =
+			boost::chrono::system_clock::now();
 
 	if (raw == 0)
 		return;
@@ -125,6 +130,8 @@ void Parser::parse(const char *raw)
 
 		rc = raw[++lastIndex];
 	}
+
+	parsing_duration = boost::chrono::system_clock::now() - start;
 }
 
 void Parser::parseFromFile(const std::string& iFileName)
@@ -174,6 +181,11 @@ bool Parser::hasElement(const std::string& iElementName) const
 	}
 
 	return false;
+}
+
+double Parser::getParsingDuration() const
+{
+	return parsing_duration.count();
 }
 
 } /* namespace IniParser */

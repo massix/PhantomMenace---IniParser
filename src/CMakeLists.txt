@@ -6,8 +6,8 @@ file(GLOB SOURCES *.cpp)
 file(GLOB HEADERS ${libPmIniParser_SOURCE_DIR}/include/*.h)
 
 set(MajorVersion  1)
-set(BinaryVersion 4)
-set(MinorVersion  4)
+set(BinaryVersion 5)
+set(MinorVersion  0)
 set(FullVersion ${MajorVersion}.${BinaryVersion}.${MinorVersion})
 
 add_definitions(
@@ -16,7 +16,7 @@ add_definitions(
     -DBINARYVERSION=${BinaryVersion}
     -DMINORVERSION=${MinorVersion})
 
-find_package(Boost COMPONENTS regex-mt)
+find_package(Boost COMPONENTS regex chrono system)
 
 include_directories(${Boost_INCLUDE_DIRS} ${libPmIniParser_SOURCE_DIR}/include)
 
