@@ -7,7 +7,7 @@ file(GLOB HEADERS ${libPmIniParser_SOURCE_DIR}/include/*.h)
 
 set(MajorVersion  1)
 set(BinaryVersion 4)
-set(MinorVersion  3)
+set(MinorVersion  4)
 set(FullVersion ${MajorVersion}.${BinaryVersion}.${MinorVersion})
 
 add_definitions(

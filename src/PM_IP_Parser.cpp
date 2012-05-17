@@ -64,6 +64,8 @@ void Parser::clearInstance()
 
 void Parser::parse(const char *raw)
 {
+	resetInstance();
+
 	if (raw == 0)
 		return;
 
