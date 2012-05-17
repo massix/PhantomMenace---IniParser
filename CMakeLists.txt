@@ -1,6 +1,7 @@
 # Main CMakeLists file
 
 cmake_minimum_required(VERSION 2.0)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
 project(libPmIniParser)
 add_subdirectory(src)
