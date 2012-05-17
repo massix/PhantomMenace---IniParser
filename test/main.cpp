@@ -22,8 +22,6 @@
  */
 
 #include <cppunit/ui/text/TestRunner.h>
-#include <cppunit/TestResult.h>
-#include <cppunit/TextOutputter.h>
 
 #include "ParserTest.hpp"
 
@@ -32,11 +30,11 @@
 
 int main( )
 {
-	CppUnit::TextUi::TestRunner runner;
-	CppUnit::TestResult result;
+	CppUnit::TextTestRunner runner;
 
 	runner.addTest(PhantomMenace::IniParser::Test::IniParserTest::suite());
 	runner.run();
+
 	exit(EXIT_SUCCESS);
 }
 
