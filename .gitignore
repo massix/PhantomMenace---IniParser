@@ -3,3 +3,6 @@
 .settings/
 build/
 tags
+**/.clang_complete
+*.un~
+*.swp
