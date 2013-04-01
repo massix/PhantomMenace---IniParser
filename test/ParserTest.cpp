@@ -29,6 +29,11 @@
 
 #include <boost/lexical_cast.hpp>
 
+void PhantomMenace::IniParser::Test::IniParserTest::printParsingDuration(PhantomMenace::IniParser::Parser & parser)
+{
+	std::cout << "Parsing duration: " << parser.getParsingDuration() << std::endl;
+}
+
 void PhantomMenace::IniParser::Test::IniParserTest::testSimpleElement()
 {
 	PhantomMenace::IniParser::Parser& p = PhantomMenace::IniParser::Parser::getInstance();
@@ -44,6 +49,8 @@ void PhantomMenace::IniParser::Test::IniParserTest::testSimpleElement()
 
 	CPPUNIT_ASSERT(elem.getElementName() == "new grammar");
 	CPPUNIT_ASSERT(elem["newgrammar.attribute"] == "Something");
+
+	printParsingDuration(p);
 }
 
 void PhantomMenace::IniParser::Test::IniParserTest::testDoubleElement()
@@ -75,6 +82,8 @@ void PhantomMenace::IniParser::Test::IniParserTest::testDoubleElement()
 		CPPUNIT_ASSERT(grammar["g_two.logic"] == "True");
 		CPPUNIT_ASSERT(grammar["g_two.sentiment"] == "Hate");
 	}
+
+	printParsingDuration(PhantomMenace::IniParser::Parser::getInstance());
 }
 
 void PhantomMenace::IniParser::Test::IniParserTest::testMultipleElements()
@@ -117,6 +126,8 @@ void PhantomMenace::IniParser::Test::IniParserTest::testMultipleElements()
 		CPPUNIT_ASSERT(grammar["logic"] == "None");
 		CPPUNIT_ASSERT(grammar["sentiment"] == "Friendship");
 	}
+
+	printParsingDuration(PhantomMenace::IniParser::Parser::getInstance());
 }
 
 void PhantomMenace::IniParser::Test::IniParserTest::testSpacesAround()
@@ -134,6 +145,8 @@ void PhantomMenace::IniParser::Test::IniParserTest::testSpacesAround()
 
 	CPPUNIT_ASSERT(elem.getElementName() == "new grammar");
 	CPPUNIT_ASSERT(elem["newgrammar.attribute"] == "Something");
+
+	printParsingDuration(PhantomMenace::IniParser::Parser::getInstance());
 }
 
 void PhantomMenace::IniParser::Test::IniParserTest::testParseFromFile()
@@ -156,6 +169,8 @@ void PhantomMenace::IniParser::Test::IniParserTest::testParseFromFile()
 	CPPUNIT_ASSERT(second_law["law.mandatory"] == "False");
 	CPPUNIT_ASSERT(second_law["law.body"] == "Always believe in gods");
 	CPPUNIT_ASSERT(boost::lexical_cast<int>(second_law["law.paragraphs"]) == 1);
+
+	printParsingDuration(PhantomMenace::IniParser::Parser::getInstance());
 }
 
 void PhantomMenace::IniParser::Test::IniParserTest::testRepeatingAttribute()
@@ -175,4 +190,6 @@ void PhantomMenace::IniParser::Test::IniParserTest::testRepeatingAttribute()
 	CPPUNIT_ASSERT(first_grammar.getElementName() == "first grammar");
 	CPPUNIT_ASSERT(first_grammar.sizeOfAttributes() == 1);
 	CPPUNIT_ASSERT(first_grammar["g_one.logic"] == "False");
+
+	printParsingDuration(PhantomMenace::IniParser::Parser::getInstance());
 }

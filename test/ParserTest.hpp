@@ -31,6 +31,7 @@ namespace PhantomMenace
 {
 namespace IniParser
 {
+	class Parser;
 namespace Test
 {
 
@@ -56,6 +57,7 @@ private:
 	void testParseFromFile();
 	void testSpacesAround();
 	void testRepeatingAttribute();
+	void printParsingDuration(PhantomMenace::IniParser::Parser & parser);
 };
 
 }
