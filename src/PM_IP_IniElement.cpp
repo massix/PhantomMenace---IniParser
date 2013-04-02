@@ -57,7 +57,8 @@ const std::string& IniElement::operator[](const std::string& attributeName)
 const std::string& IniElement::getValueForAttribute(
 		const std::string& attributeName) const throw (std::logic_error)
 {
-	return (*this)[attributeName];
+	std::string const & ret_value = (*this)[attributeName];
+	return ret_value;
 }
 
 bool IniElement::pushAttribute(const std::string& atName, const std::string& atValue)

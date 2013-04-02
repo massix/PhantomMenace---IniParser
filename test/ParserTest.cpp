@@ -193,3 +193,24 @@ void PhantomMenace::IniParser::Test::IniParserTest::testRepeatingAttribute()
 
 	printParsingDuration(PhantomMenace::IniParser::Parser::getInstance());
 }
+
+void PhantomMenace::IniParser::Test::IniParserTest::testNonExistingAttributes()
+{
+	PhantomMenace::IniParser::Parser::getInstance().parse(
+			"# This is a comment\n"
+			"[grammar]\n"
+			"  \n"
+			"g_one.logic = False\n"
+	);
+
+	const PhantomMenace::IniParser::IniElement & grammar =
+		PhantomMenace::IniParser::Parser::getInstance().getElements()[0];
+
+	CPPUNIT_ASSERT(grammar.getElementName() == "grammar");
+	CPPUNIT_ASSERT(grammar.sizeOfAttributes() == 1);
+	CPPUNIT_ASSERT(grammar["g_one.logic"] == "False");
+	CPPUNIT_ASSERT(grammar.hasAttribute("g_one.nonexisting") == false);
+
+	printParsingDuration(PhantomMenace::IniParser::Parser::getInstance());
+}
+

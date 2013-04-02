@@ -48,6 +48,7 @@ public:
 		CPPUNIT_TEST(testParseFromFile);
 		CPPUNIT_TEST(testSpacesAround);
 		CPPUNIT_TEST(testRepeatingAttribute);
+		CPPUNIT_TEST(testNonExistingAttributes);
 	CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -57,6 +58,9 @@ private:
 	void testParseFromFile();
 	void testSpacesAround();
 	void testRepeatingAttribute();
+	void testNonExistingAttributes();
+
+	/* Internal function used to get the parsing duration */
 	void printParsingDuration(PhantomMenace::IniParser::Parser & parser);
 };
 
